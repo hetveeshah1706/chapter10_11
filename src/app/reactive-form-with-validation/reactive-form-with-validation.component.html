@@ -1,0 +1,67 @@
+<div class="container">
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+        <h3 style="text-align:center">
+            Reactive Validation Form!!
+        </h3>
+
+
+        <div class="form-group">
+              <label for="username">Name: <span class="lblError">*</span></label>
+              <div class="controls">
+                <input type="text" id="username" placeholder="Name" class="form-control" formControlName="user_name">
+                <p class="lblError" *ngIf="signupForm.get('user_name').hasError('required')
+                            && !signupForm.get('user_name').pristine">
+                    Name is Required
+                </p>
+                <p class="lblError"
+                   *ngIf="signupForm.get('user_name').hasError('invalidName')
+                            && !signupForm.get('user_name').pristine">
+                    Name is Invalid
+                </p>
+              </div>
+        </div>
+
+
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label for="email">E-mail: <span class="lblError">*</span></label>
+              <div class="controls">
+                <input type="text" id="email" placeholder="E-mail" class="form-control" formControlName="user_email">
+                <p class="lblError" *ngIf="signupForm.get('user_email').hasError('required') && !signupForm.get('user_email').pristine">
+                  Please provide your E-mail
+                </p>
+                <p class="lblError" *ngIf="signupForm.get('user_email').hasError('email') && !signupForm.get('user_email').pristine">E-mail is Invalid</p>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+        <div class="form-group">
+            <label for="city">City: <span class="lblError">*</span></label>
+            <div class="controls">
+                <select id="city" formControlName="user_city" class="form-control">
+                    <option value="Ahmedabad">Ahmedabad</option>
+                    <option value="Baroda">Baroda</option>
+                    <option value="Surat">Surat</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit" [disabled]="signupForm.invalid" style="width: 15%">
+            Sign Up
+          </button>
+        </div>
+
+  </form>
+</div>

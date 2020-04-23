@@ -1,0 +1,64 @@
+<div class="container">
+  <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+
+        <h3 style="text-align:center">
+            Async Validation Form!!
+        </h3>
+
+
+
+
+
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label for="email">E-mail: <span class="lblError">*</span></label>
+              <div class="controls">
+                <input type="text" id="email" placeholder="E-mail" class="form-control" formControlName="user_email">
+                <p class="lblError" *ngIf="signupForm.get('user_email').hasError('required') && !signupForm.get('user_email').pristine">
+                  Please provide your E-mail
+                </p>
+                <p class="lblError" *ngIf="signupForm.get('user_email').hasError('email') && !signupForm.get('user_email').pristine">E-mail is Invalid</p>
+                <p class="lblError" style="color:red" *ngIf="signupForm.get('user_email').hasError('duplicateEmail')">
+                  Email is already Taken
+              </p>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="form-row">
+          <div class="col">
+            <div class="form-group">
+              <label for="email">Password: <span class="lblError">*</span></label>
+              <div class="controls">
+                <input type="text" id="user_password" placeholder="Password" class="form-control" formControlName="user_password">
+                <p class="lblError" *ngIf="signupForm.get('user_password').hasError('required') && !signupForm.get('user_password').pristine">
+                  Please provide your password
+                </p>
+
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
+
+
+        <div class="form-group">
+          <button class="btn btn-primary" type="submit" [disabled]="signupForm.invalid" style="width: 15%">
+            Sign Up
+          </button>
+        </div>
+
+  </form>
+</div>
